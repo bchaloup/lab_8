@@ -93,6 +93,10 @@ data81 %>%
 ```
 On average students who paid for their meals had a higher overall total math score.  It does not seem that teacher experience has a strong effect on total math score.  Perhaps the difference between paid or free meals relates to the students SES which has an effect on total math score.
 
+# Introduction 
+
+@brazhe2006self says stuff about fractal and such. Another group of researches does too [@lowen1993fractal].
+
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 
