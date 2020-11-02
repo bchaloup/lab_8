@@ -71,31 +71,7 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 data81 <- import(here("data", "star.csv"))
 ```
 
-```{r}
-data81 %>% 
-  group_by(sex, frl) %>% 
-  summarise(math_mean = round(mean(tmathss), 2), math_sd = round(sd(tmathss), 2), rdg_mean = round(mean(treadss), 2), rdg_sd = round(sd(treadss), 2)) %>% 
-  knitr::kable()
-```
-
-Girls who paid for their lunches had the highest reading and math scores on average. In both boys and girls students who get free lunch scored lower in both math and reading.
-
-
-```{r}
-data81 %>% 
-  ggplot(aes(x = totexp, y = tmathss)) +
-  geom_point(color = "gray42") +
-  geom_smooth(aes(color = frl), method = "lm") +
-  labs(x = "Teacher Experience (years)", y = "Total Math Scale Score", title = "Relation between teacher experience and math scores", subtitle = "Separate regression lines displayed by free/reduced price lunch status", color = "Lunch status") +
-  theme(legend.position="bottom") +
-  scale_color_discrete(labels = c("Paid Meals", "Free/Reduced Price Meals"))
-
-```
-On average students who paid for their meals had a higher overall total math score.  It does not seem that teacher experience has a strong effect on total math score.  Perhaps the difference between paid or free meals relates to the students SES which has an effect on total math score.
-
-# Introduction 
-
-@brazhe2006self says stuff about fractal and such. Another group of researches does too [@lowen1993fractal].
+@brazhe2006self say stuff about fractals and such. Another group of researchers does too [@lowen1993fractal].
 
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
@@ -111,6 +87,27 @@ We used `r cite_r("r-references.bib")` for all our analyses.
 
 
 # Results
+
+```{r}
+data81 %>% 
+  group_by(sex, frl) %>% 
+  summarise(math_mean = round(mean(tmathss), 2), math_sd = round(sd(tmathss), 2), rdg_mean = round(mean(treadss), 2), rdg_sd = round(sd(treadss), 2)) %>% 
+  knitr::kable()
+```
+
+Girls who paid for their lunches had the highest reading and math scores on average. In both boys and girls, students who get free lunch scored lower in both math and reading.
+
+```{r}
+data81 %>% 
+  ggplot(aes(x = totexp, y = tmathss)) +
+  geom_point(color = "gray42") +
+  geom_smooth(aes(color = frl), method = "lm") +
+  labs(x = "Teacher Experience (years)", y = "Total Math Scale Score", title = "Relation between teacher experience and math scores", subtitle = "Separate regression lines displayed by free/reduced price lunch status", color = "Lunch status") +
+  theme(legend.position="bottom") +
+  scale_color_discrete(labels = c("Paid Meals", "Free/Reduced Price Meals"))
+```
+
+On average, students who paid for their meals had a higher overall total math score.  It does not seem that teacher experience has a strong effect on total math score.  Perhaps the difference between paid or free meals relates to the students' SES which has an effect on total math score.
 
 # Discussion
 

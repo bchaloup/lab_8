@@ -1,49 +1,39 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[
-  english,
-  man]{apa6}
+\documentclass[english,man]{apa6}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
-% Use upquote if available, for straight quotes in verbatim environments
+% use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
 \hypersetup{
-  pdftitle={Exploring Dwell Times for Dynamic Fractals},
-  pdfauthor={Scott Wallner1, 2, Tess Sameshima1, 2, \& Benjamin Chaloupka1, 2},
-  pdflang={en-EN},
-  pdfkeywords={fractals, dwell times, growth and decay sequences},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+            pdftitle={Exploring Dwell Times for Dynamic Fractals},
+            pdfkeywords={fractals, dwell times, growth and decay sequences},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -53,23 +43,16 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-% Make \paragraph and \subparagraph free-standing
-\ifx\paragraph\undefined\else
-  \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-  \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
+
 % Manuscript styling
 \usepackage{upgreek}
 \captionsetup{font=singlespacing,justification=justified}
@@ -106,12 +89,16 @@
   {\section{\normalfont\normalsize\abstractname}}
   {\section*{\normalfont\normalsize\abstractname}}
   {}{\typeout{Failed to patch abstract.}}
-\patchcmd{\HyOrg@maketitle}
-  {\section{\protect\normalfont{\@title}}}
-  {\section*{\protect\normalfont{\@title}}}
-  {}{\typeout{Failed to patch title.}}
 \makeatother
 \shorttitle{Fractal Dwell Times}
+\author{Scott Wallner\textsuperscript{1, 2}, Tess Sameshima\textsuperscript{1, 2}, \& Benjamin Chaloupka\textsuperscript{1, 2}}
+\affiliation{
+\vspace{0.5cm}
+\textsuperscript{1} University of Oregon\\\textsuperscript{2} Institute of Oregon}
+\authornote{Perception and Action Lab, Cognitivie Dynamics Lab, \& Brain and Memory Lab
+
+
+}
 \keywords{fractals, dwell times, growth and decay sequences}
 \DeclareDelayedFloatFlavor{ThreePartTable}{table}
 \DeclareDelayedFloatFlavor{lltable}{table}
@@ -120,54 +107,26 @@
 \renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
 \makeatother
 \usepackage{csquotes}
-\ifxetex
-  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
   \usepackage{polyglossia}
   \setmainlanguage[]{english}
-\else
-  \usepackage[shorthands=off,main=english]{babel}
 \fi
 
 \title{Exploring Dwell Times for Dynamic Fractals}
-\author{Scott Wallner\textsuperscript{1, 2}, Tess Sameshima\textsuperscript{1, 2}, \& Benjamin Chaloupka\textsuperscript{1, 2}}
+
 \date{}
-
-
-\authornote{
-
-Perception and Action Lab, Cognitivie Dynamics Lab, \& Brain and Memory Lab
-
-}
-
-\affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon\\\textsuperscript{2} Institute of Oregon}
 
 \abstract{
 Our primary research question is whether dwell times systematically differ between growth and decay sequences. We will examine this question both within and across subjects. Additionally, we are possibly interested in several exploratory analyses. For example, do specific fractal images elicit longer dwell times? Do specific levels of complexity elicit longer dwell times? Is there a dwell time pattern when fractal iterations are presented randomly? Does dwell time systematically decrease over time (if so, we may need to normalize dwell times to account for this)?
 }
 
-
-
 \begin{document}
 \maketitle
 
-\begin{tabular}{l|l|r|r|r|r}
-\hline
-sex & frl & math\_mean & math\_sd & rdg\_mean & rdg\_sd\\
-\hline
-boy & no & 492.85 & 46.34 & 441.46 & 32.32\\
-\hline
-boy & yes & 469.87 & 46.09 & 425.38 & 26.63\\
-\hline
-girl & no & 501.21 & 45.96 & 448.54 & 34.52\\
-\hline
-girl & yes & 477.51 & 46.30 & 430.80 & 27.42\\
-\hline
-\end{tabular}
-
-Girls who paid for their lunches had the highest reading and math scores on average. In both boys and girls students who get free lunch scored lower in both math and reading.
-
-\includegraphics{lab_8_papaja_files/figure-latex/unnamed-chunk-2-1.pdf}
-On average students who paid for their meals had a higher overall total math score. It does not seem that teacher experience has a strong effect on total math score. Perhaps the difference between paid or free meals relates to the students SES which has an effect on total math score.
+Brazhe and Maksimov (2006) say stuff about fractals and such. Another group of researchers does too (Lowen \& Teich, 1993).
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -186,10 +145,30 @@ We report how we determined our sample size, all data exclusions (if any), all m
 \hypertarget{data-analysis}{%
 \subsection{Data analysis}\label{data-analysis}}
 
-We used R (Version 3.6.1; R Core Team, 2020) and the R-packages \emph{dplyr} (Version 1.0.2; Wickham et al., 2020), \emph{forcats} (Version 0.5.0; Wickham, 2020a), \emph{ggplot2} (Version 3.3.2; Wickham, 2016), \emph{here} (Version 0.1; Müller, 2017), \emph{janitor} (Version 2.0.1; Firke, 2020), \emph{papaja} (Version 0.1.0.9997; Aust \& Barth, 2020), \emph{purrr} (Version 0.3.4; Henry \& Wickham, 2020), \emph{readr} (Version 1.4.0; Wickham \& Hester, 2020), \emph{rio} (Version 0.5.16; Chan, Chan, Leeper, \& Becker, 2018), \emph{stringr} (Version 1.4.0; Wickham, 2019), \emph{tibble} (Version 3.0.4; Müller \& Wickham, 2020), \emph{tidyr} (Version 1.1.2; Wickham, 2020b), and \emph{tidyverse} (Version 1.3.0; Wickham, Averick, et al., 2019) for all our analyses.
+We used R (Version 3.6.3; R Core Team, 2020) and the R-packages \emph{dplyr} (Version 1.0.2; Wickham et al., 2020), \emph{forcats} (Version 0.5.0; Wickham, 2020a), \emph{ggplot2} (Version 3.3.2; Wickham, 2016), \emph{here} (Version 0.1; Müller, 2017), \emph{janitor} (Version 2.0.1; Firke, 2020), \emph{papaja} (Version 0.1.0.9942; Aust \& Barth, 2020), \emph{purrr} (Version 0.3.4; Henry \& Wickham, 2020), \emph{readr} (Version 1.4.0; Wickham \& Hester, 2020), \emph{rio} (Version 0.5.16; Chan, Chan, Leeper, \& Becker, 2018), \emph{stringr} (Version 1.4.0; Wickham, 2019), \emph{tibble} (Version 3.0.4; Müller \& Wickham, 2020), \emph{tidyr} (Version 1.1.2; Wickham, 2020b), and \emph{tidyverse} (Version 1.3.0; Wickham, Averick, et al., 2019) for all our analyses.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
+
+\begin{tabular}{l|l|r|r|r|r}
+\hline
+sex & frl & math\_mean & math\_sd & rdg\_mean & rdg\_sd\\
+\hline
+boy & no & 492.85 & 46.34 & 441.46 & 32.32\\
+\hline
+boy & yes & 469.87 & 46.09 & 425.38 & 26.63\\
+\hline
+girl & no & 501.21 & 45.96 & 448.54 & 34.52\\
+\hline
+girl & yes & 477.51 & 46.30 & 430.80 & 27.42\\
+\hline
+\end{tabular}
+
+Girls who paid for their lunches had the highest reading and math scores on average. In both boys and girls, students who get free lunch scored lower in both math and reading.
+
+\includegraphics{lab_8_papaja_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+On average, students who paid for their meals had a higher overall total math score. It does not seem that teacher experience has a strong effect on total math score. Perhaps the difference between paid or free meals relates to the students' SES which has an effect on total math score.
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -207,6 +186,9 @@ We used R (Version 3.6.1; R Core Team, 2020) and the R-packages \emph{dplyr} (Ve
 \leavevmode\hypertarget{ref-R-papaja}{}%
 Aust, F., \& Barth, M. (2020). \emph{papaja: Create APA manuscripts with R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
 
+\leavevmode\hypertarget{ref-brazhe2006self}{}%
+Brazhe, A., \& Maksimov, G. (2006). Self-organized critical gating of ion channels: On the origin of long-term memory in dwell time series. \emph{Chaos: An Interdisciplinary Journal of Nonlinear Science}, \emph{16}(3), 033129.
+
 \leavevmode\hypertarget{ref-R-rio}{}%
 Chan, C.-h., Chan, G. C., Leeper, T. J., \& Becker, J. (2018). \emph{Rio: A swiss-army knife for data file i/o}.
 
@@ -215,6 +197,9 @@ Firke, S. (2020). \emph{Janitor: Simple tools for examining and cleaning dirty d
 
 \leavevmode\hypertarget{ref-R-purrr}{}%
 Henry, L., \& Wickham, H. (2020). \emph{Purrr: Functional programming tools}. Retrieved from \url{https://CRAN.R-project.org/package=purrr}
+
+\leavevmode\hypertarget{ref-lowen1993fractal}{}%
+Lowen, S. B., \& Teich, M. C. (1993). Fractal renewal processes generate 1/f noise. \emph{Physical Review E}, \emph{47}(2), 992.
 
 \leavevmode\hypertarget{ref-R-here}{}%
 Müller, K. (2017). \emph{Here: A simpler way to find your files}. Retrieved from \url{https://CRAN.R-project.org/package=here}
@@ -247,6 +232,5 @@ Wickham, H., François, R., Henry, L., \& Müller, K. (2020). \emph{Dplyr: A gra
 Wickham, H., \& Hester, J. (2020). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
 
 \endgroup
-
 
 \end{document}
