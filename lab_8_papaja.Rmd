@@ -71,6 +71,15 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 data81 <- import(here("data", "star.csv"))
 ```
 
+```{r}
+data81 %>% 
+  group_by(sex, frl) %>% 
+  summarise(math_mean = round(mean(tmathss), 2), math_sd = round(sd(tmathss), 2), rdg_mean = round(mean(treadss), 2), rdg_sd = round(sd(treadss), 2)) %>% 
+  knitr::kable()
+```
+
+Girls who paid for their lunches had the highest reading and math scores on average. In both boys and girls students who get free lunch scored lower in both math and reading.
+
 
 ```{r}
 data81 %>% 
