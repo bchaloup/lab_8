@@ -1,0 +1,90 @@
+---
+title             : "Exploring Dwell Times for Dynamic Fractals"
+shorttitle        : "Fractal Dwell Times"
+
+author: 
+  - name          : "Scott Wallner"
+    affiliation   : "1, 2"
+    corresponding : no    # Define only one corresponding author
+    email         : "swallner@uoregon.edu"
+  - name          : "Tess Sameshima"
+    affiliation   : "1, 2"
+    email         : "tesufuai@uoregon.edu"
+  - name          : "Benjamin Chaloupka"
+    affiliation   : "1, 2"
+    email         : "bchaloup@uoregon.edu"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+  - id            : "2"
+    institution   : "Institute of Oregon"
+
+authornote: |
+  Perception and Action Lab, Cognitivie Dynamics Lab, & Brain and Memory Lab
+
+abstract: |
+  Our primary research question is whether dwell times systematically differ between growth and decay sequences. We will examine this question both within and across subjects. Additionally, we are possibly interested in several exploratory analyses. For example, do specific fractal images elicit longer dwell times? Do specific levels of complexity elicit longer dwell times? Is there a dwell time pattern when fractal iterations are presented randomly? Does dwell time systematically decrease over time (if so, we may need to normalize dwell times to account for this)?
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "fractals, dwell times, growth and decay sequences"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+
+
+# Methods
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+
+# Results
+
+# Discussion
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup
