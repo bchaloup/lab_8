@@ -57,6 +57,8 @@ library(here)
 library(rio)
 library(janitor)
 library(tidyverse)
+
+theme_set(theme_minimal())
 ```
 
 ```{r analysis-preferences}
@@ -70,6 +72,17 @@ data81 <- import(here("data", "star.csv"))
 ```
 
 
+```{r}
+data81 %>% 
+  ggplot(aes(x = totexp, y = tmathss)) +
+  geom_point(color = "gray42") +
+  geom_smooth(aes(color = frl), method = "lm") +
+  labs(x = "Teacher Experience (years)", y = "Total Math Scale Score", title = "Relation between teacher experience and math scores", subtitle = "Separate regression lines displayed by free/reduced price lunch status", color = "Lunch status") +
+  theme(legend.position="bottom") +
+  scale_color_discrete(labels = c("Paid Meals", "Free/Reduced Price Meals"))
+
+```
+On average students who paid for their meals had a higher overall total math score.  It does not seem that teacher experience has a strong effect on total math score.  Perhaps the difference between paid or free meals relates to the students SES which has an effect on total math score.
 
 # Methods
 We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
